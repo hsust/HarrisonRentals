@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Harrison Rentals</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/stylesheets/cover.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+  </head>
+  <body>
+    <script>
+      window.onload = function() {
+        getDate();
+      }
+      function getDate() {
+        var today = new Date();
+
+        document.getElementById('formaldate').value = today;
+
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0!
+        var yyyy = today.getFullYear();
+
+        if(dd<10) {
+            dd='0'+dd
+        } 
+        if(mm<10) {
+            mm='0'+mm
+        } 
+        today = mm+'/'+dd+'/'+yyyy;
+
+        document.getElementById('date').value = today;
+      }
+    </script>
+   
+
+    <div class="site-wrapper" >
+
+        <div class="site-wrapper-inner" style="background: url('/images/cover.jpg') no-repeat scroll 0px 100%"> 
+
+          <div class="cover-container">
+            <div class="masthead clearfix">
+              <div class="inner">
+                <ul class="nav masthead-nav">
+                  <li class="active"><a href="/">Check-Out</a></li>
+                  <li><a href="/return">Check-In</a></li>
+                  <li><a href="/rentals">Rentals</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="inner cover">
+              <h1 class="cover-heading">Check-Out Rentals</h1>
+              <p class="lead">
+                <form method="post" action="/">
+                  <div>
+                    <input type="text" id="name" name="name" placeholder="Enter Student Name"><br>
+                    <input type="text" id="pennid" name="pennid" placeholder="Student Penn ID"><br>
+                    <input type="text" id="email" name="email" placeholder="Email Address"><br>
+                    <input type="text" id="rental" name="rental" placeholder="Enter Name of Rental"><br>
+                    <input type="hidden" name="date" id="date" value="">
+                    <input type="hidden" name="formaldate" id="formaldate" value="">
+                    <button type="submit" class="btn btn-lg btn-default" id="submit">Submit</button>
+                  </div>
+                </form> 
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Bootstrap core JavaScript
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

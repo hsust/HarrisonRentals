@@ -1,0 +1,14 @@
+#!/bin/bash
+
+python send_email.py
+
+FILE=emails
+while read line; do
+	a=( $line )
+	email=${a[0]}
+	name=(${a[1]}" "${a[2]})
+	rental=${a[3]}
+	echo "Hi $name, We have it on record that you have $rental checked out. Please return it as soon as possible or we might have to start charging." > msg
+	cat msg | mail -s "Please Return" ${a[0]}
+	rm msg
+done < $FILE

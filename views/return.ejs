@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Harrison Rentals</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/stylesheets/cover.css" rel="stylesheet">
+
+    <link href="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.css">
+
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+  </head>
+  <body>
+    <script>
+      function returnRental(id) {
+        if (confirm("Are you sure?") == true) {
+            $.post("/returnRental", {pennid:id}, function(data) {
+              window.location.href = "/rentals";
+            });
+        } else {
+            
+        }
+            
+      }
+    </script>
+   
+
+    <div class="site-wrapper" >
+
+        <div class="site-wrapper-inner" style="background: url('/images/cover.jpg') no-repeat scroll 0px 100%"> 
+
+          <div class="cover-container">
+            <div class="masthead clearfix">
+              <div class="inner">
+                <ul class="nav masthead-nav">
+                  <li><a href="/">Check-Out</a></li>
+                  <li class="active"><a href="/return">Check-In</a></li>
+                  <li><a href="/rentals">Rentals</a></li>
+                </ul>
+              </div>
+            </div>
+              <p class="cover-heading">Check-In</h1>
+              <p class="lead">
+                <div class="table-responsive">
+                <table class="table table-bordered" cellspacing="0" width="100%">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Rental</th>
+                      <th>Penn ID</th>
+                      <th>Email</th>
+                      <th>Date Out</th>
+                      <th>Date In</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% for(var i = 0; i < docs.length; i++) { 
+                      var obj = JSON.parse(docs[i]);%>
+                      <tr>
+                        <td><%=obj.name%></td>
+                        <td><%=obj.rental%></td>
+                        <td><%=obj.pennid%></td>
+                        <td><%=obj.email%></td>
+                        <td><%=obj.startdate%></td>
+                        <td><button onclick="returnRental(<%=obj.pennid%>)" style="color:black">Return</button></td>
+                      </tr>
+            
+                    <% } %>
+
+                </table>
+              </div>
+              </p>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Bootstrap core JavaScript
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <script src="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+  </body>
+</html>

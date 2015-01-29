@@ -1,0 +1,6 @@
+#!/bin/bash
+
+FILE=emails
+while read line; do
+	cat message | mail -s "Subject" stephanie.hsu888@gmail.com
+done < $FILE
